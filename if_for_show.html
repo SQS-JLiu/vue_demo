@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if-show-for</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="show">hello world</div>
+        <button @click="handleClick">toggle</button>
+        <ul>    <!-- key 用于提高循环效率, item必须都不相同-->
+            <li v-for="item of list" :key="item">{{item}}</li>
+        </ul>
+      </div>
+  
+      <script>
+          // v-if   移除/添加
+          // v-show 隐藏/显示
+          new Vue({
+              el:"#root",
+              data: {
+                 show:true,
+                 list: [1,2,3]
+              },
+              methods:{
+                handleClick: function(){
+                    this.show = !this.show;
+                  }
+              }
+          })
+      </script>
+</body>
+</html>

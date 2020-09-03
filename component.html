@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleSubmit">submit</button>
+        </div>
+        <ul>
+         <todo-item v-for="(item,index) of list" 
+         :key="index" :content="item" :index="index"
+         @delete="handleDelete"></todo-item> <!--接收delete事件-->
+        </ul>
+    </div>
+
+    <script> //每个组件是一个vue实例
+        Vue.component('todo-item',{  //全局组件
+            template: '<li @click="handleClick">{{content}}</li>',
+            props:['content','index'],   // 属性传值
+            methods:{
+                handleClick:function(){
+                    // alert("clicked!!!");
+                    //发送delete事件,并携带index值，子组件向父组件发消息
+                    this.$emit('delete',this.index); 
+                }
+            }
+        });
+
+        var TodoItem = {
+            template:'<li>item</li>'
+        }
+
+        //如果vue实例中没有定义模板，它会把挂载点当做自己的模板
+        //Vue项目是由很多vue实例组成，父组件一般通过属性向子组件传值
+        new Vue({
+            el : "#root",  //挂载到root
+            // components:{
+            //     'todo-item':TodoItem  //局部组件
+            // },
+            data: {
+                inputValue:"hello",
+                list: []
+            },
+            methods:{
+                handleSubmit:function(){
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                },
+                handleDelete:function(index){
+                    this.list.splice(index,1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue demo</title>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>  <!-- 模板1-->
+        <h2>{{number}}</h2>
+        <h3 v-text="test"></h3>
+        <div v-html="content"></div>
+        <div @click="handleClick">{{test}}</div>
+        <div v-on:click="()=>{alert(123)}">Click me</div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",  //挂载点root
+            //template:'<h2>hello - {{msg}}</h2>',  //模板2
+            data:{
+                msg :"hello world",
+                number: 123,
+                test: "test",
+                content :"<p>content</p>"
+            },
+            methods:{
+                handleClick:function(){
+                    this.test = "clicked";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

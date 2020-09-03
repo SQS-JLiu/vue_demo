@@ -1,0 +1,6 @@
+安装： vue-cli
+npm install --global vue-cli
+创建一个基于webpack的todolist项目
+vue init webpack todolist
+cd todolist
+npm run dev
