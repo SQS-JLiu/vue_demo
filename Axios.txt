@@ -1,0 +1,14 @@
+Axios是一个基于promise的HTTP库
+可用于浏览器和node.js
+特性：
+1.支持Promise API
+2.拦截请求响应
+3.转换请求数据和响应数据
+4.取消请求
+5.自动转换JSON数据
+6.客户端支持防御XSRF
+
+浏览器支持：
+IE9+
+FireFox7+
+Chrome7+
